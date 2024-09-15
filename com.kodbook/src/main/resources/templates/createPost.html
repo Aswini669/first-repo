@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="createPost.css" rel="stylesheet">
+</head>
+<body>
+
+	<div id="container">
+		<h2>Profile Creation</h2>
+		<form id="profileForm" action="/createPost" method="post"
+			enctype="multipart/form-data">
+			<textarea name="caption" placeholder="caption" required></textarea>
+			<br> <br> <input type="file" name="photo" accept="image/*">
+			<br>
+			<button type="submit">POST</button>
+		</form>
+	</div>
+
+</body>
+</html>
