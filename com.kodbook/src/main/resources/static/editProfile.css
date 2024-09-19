@@ -1,0 +1,79 @@
+/* editProfile.css */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Sunset gradient */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 3em;
+}
+
+h3 {
+    text-align: center;
+    color: #fff;
+}
+
+form {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Purple to blue gradient */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    color: white;
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin: 12px 0 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+}
+
+input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #ff512f, #f09819); /* Orange to yellow gradient */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(to right, #f09819, #ff512f); /* Reverse gradient on hover */
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #fff;
+    margin: 20px 0;
+}

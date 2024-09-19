@@ -23,4 +23,15 @@ public class NavigationController {
 		return "createPost";
 	}
 	
+	@GetMapping("/openMyProfile")
+	public String openMyProfile() {
+		return "myProfile";
+	}
+	@GetMapping("/openEditProfile")
+	public String openEditProfile() {
+		return "editProfile";
+	}
+	
+	
+	
 }

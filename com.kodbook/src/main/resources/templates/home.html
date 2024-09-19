@@ -3,11 +3,61 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link href="home.css" rel="stylesheet">
 </head>
 <body>
-   
-   <h1>home!</h1>
-   <a href="/openCreatePost">Create post</a>
- 
+	<nav>
+	    <span th:text="${session.username}"></span>
+		<a href="/openMyProfile">My profile</a>
+		<a href="/openCreatePost">Create Post</a>
+		<a href="/showPosts">Show Post</a>
+		
+	</nav>
+
+	<div class="profile-details">
+	<div class="posts-grid">
+	
+		<span th:each="posts : ${allposts}">
+				<p>
+					<strong>Photo:</strong>
+				</p>
+				<img th:if="${posts.photoBase64}"
+					th:src="'data:image/jpeg;base64,' + ${posts.photoBase64}"
+					alt="Post Photo" />
+				<p>
+					<strong>Caption:</strong> 
+					<span th:text="${posts.caption}"></span>
+				</p>
+				<p>
+					<strong>Likes:</strong> 
+					<span th:text="${posts.likes}"></span>
+				</p>
+					
+					<form action="/likepost" method="post">
+						<input type="hidden" name="id" th:value="${posts.id}">
+						<button type="submit">
+							Like
+						</button>
+					</form>
+				<!-- Comment form -->
+				<form action="/addComment" method="post" class="comment-form">
+					<input type="hidden" name="id" th:value="${posts.id}">
+					<textarea name="comment" placeholder="Add a comment..." required></textarea>
+					<input type="submit" value="Comment">
+				</form>
+
+				<!-- Displaying Comments -->
+				<div class="comments-section">
+					<h4>Comments:</h4>
+					<ul>
+						<li th:each="comment : ${posts.comments}"><span
+							th:text="${comment}"></span></li>
+					</ul>
+				</div>
+						</span>
+				
+			</div>
+	</div>
+	
 </body>
 </html>

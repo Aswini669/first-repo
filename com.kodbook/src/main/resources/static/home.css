@@ -1,0 +1,111 @@
+/* General Styles */
+body {
+    font-family: 'Verdana', sans-serif;
+    background: linear-gradient(120deg, #e8f0fe, #a1c4fd);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+nav {
+    background: linear-gradient(90deg, #1a73e8, #34a853);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    border-bottom: 2px solid white;
+}
+
+/* Post Grid and Profile Details */
+.profile-details {
+    padding: 20px;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.posts-grid span {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+/* Buttons */
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.comment-form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.comment-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Comment Form Styles */
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comments-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comments-section li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}

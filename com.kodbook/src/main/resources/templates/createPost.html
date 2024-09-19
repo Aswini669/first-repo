@@ -6,6 +6,12 @@
 <link href="createPost.css" rel="stylesheet">
 </head>
 <body>
+	<nav>
+	    <span th:text="${session.username}"></span>
+		<a href="/openMyProfile">My profile</a>
+		<a href="/showPosts">Show Post</a>
+		<a href="/openEditProfile">Update profile</a>
+	</nav>
 
 	<div id="container">
 		<h2>Profile Creation</h2>

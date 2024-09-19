@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Post {
@@ -24,22 +25,26 @@ public class Post {
 	private String caption;
 	private int likes;
 	private List<String>comments;
+	@ManyToOne  
+	private User user;
+	
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	@Column(columnDefinition = "LONGBLOB")
 	byte[] photo;
-	
+
 	public Post() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Post(Long id, String caption, int likes, List<String> comments, byte[] photo) {
+	public Post(Long id, String caption, int likes, List<String> comments, User user, byte[] photo) {
 		super();
 		this.id = id;
 		this.caption = caption;
 		this.likes = likes;
 		this.comments = comments;
+		this.user = user;
 		this.photo = photo;
 	}
 
@@ -75,6 +80,14 @@ public class Post {
 		this.comments = comments;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public byte[] getPhoto() {
 		return photo;
 	}
@@ -82,19 +95,13 @@ public class Post {
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
-	
-	public String getPhotoBase64() {
-		if(photo == null) {
-			return null;
-		}
-		return Base64.getEncoder().encodeToString(photo);
-	}
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", caption=" + caption + ", likes=" + likes + ", comments=" + comments + ", photo="
-				+ Arrays.toString(photo) + "]";
+		return "Post [id=" + id + ", caption=" + caption + ", likes=" + likes + ", comments=" + comments + ", user="
+				+ user + ", photo=" + Arrays.toString(photo) + "]";
 	}
+	
 	
 	
 }
