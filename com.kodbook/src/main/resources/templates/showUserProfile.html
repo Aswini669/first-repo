@@ -3,34 +3,66 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link href="home.css" rel="stylesheet">
+<link href="showUserProfile.css" rel="stylesheet">
 </head>
 <body>
-	<nav>
+    <nav>
 		<span th:text="${session.username}"></span> 
 		<a href="/openMyProfile">My profile</a> 
 		<a href="/openCreatePost">Create Post</a> 
 		<a href="/showPosts">Show Post</a>
 		<a href="/logout">LOG OUT</a>
 	</nav>
+	
+	<div class="container">
+	   
+	        <div class="profile-picture">
+            <img th:if="${user.photoBase64}" 
+                 th:src="'data:image/jpeg;base64,' + ${user.photoBase64}" 
+                 alt="Profile Photo" />
+        </div>
+	    <div class="username">
+            <h1 th:text="${user.username}"></h1>
+        </div>
+        <ul>
+	       <li><i class="fa-solid fa-calendar-days"></i> Date of Birth: <span th:text="${user.dob}"></span></li>
+	       
+	       <li><i class="fa-solid fa-venus-mars"></i> Gender: <span th:text="${user.gender}"></span></li>
+	        
+	       <li><i class="fa-solid fa-location-dot"></i> City: <span th:text="${user.city}"></span></li>
+	       
+	       <li><i class="fa-solid fa-graduation-cap"></i> College: <span th:text="${user.college}"></span></li>
+	       
+	       <li><i class="fa-solid fa-circle-info"></i> Bio: <span th:text="${user.bio}"></span></li>
+	     </ul>
 
+		<div class="social-links">
+			<p>
+				<i class="fab fa-linkedin"></i> <a th:href="${user.linkedIn}"
+					target="_blank">LinkedIn</a>
+			</p>
+			<p>
+				<i class="fab fa-github"></i> <a th:href="${user.gitHub}"
+					target="_blank">GitHub</a>
+			</p>
+		</div>
+	</div>
+	
 	<div class="profile-details">
 		<div class="posts-grid">
 
-			<span th:each="posts : ${allposts}">
+			<span th:each="posts : ${myPosts}">
 				
+				<p>
 				<div class="post-profile">
-					<form action="/visitProfile" method="post">
-					<input type="hidden" name="profileName" th:value="${posts.user.username}">
-					<button>		
+					<strong>User: </strong>
+					<span th:text="${posts.user.username}"></span>
 					<img th:if="${posts.user.photoBase64}"
 					th:src="'data:image/jpeg;base64,' + ${posts.user.photoBase64}"
-					alt="Post Photo" /></button>
-					<span th:text="${posts.user.username}"></span>
-					
-					</form>
+					alt="Post Photo" />
 				</div>
-				      
+				</p>
+					
 				<p>
 					<strong>Photo:</strong>
 				</p> <img th:if="${posts.photoBase64}"
@@ -63,6 +95,6 @@
 
 		</div>
 	</div>
-
+	
 </body>
 </html>

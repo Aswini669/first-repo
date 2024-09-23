@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,8 +46,12 @@ public class UserController {
 		if(status==true) {
 			List<Post> allPosts = pserv.fetchAllPosts();
 			session.setAttribute("username", username);
-			model.addAttribute("allPosts", allPosts);
+			
+			model.addAttribute("allposts", allPosts);
 			model.addAttribute("session", session);
+			
+			User user=service.getUser(username);
+			model.addAttribute("user", user);
 			return "home";
 		}
 		else {
@@ -55,7 +60,9 @@ public class UserController {
 	}
 	
 	@PostMapping("/updateProfile")
-	public String updateProfile(@RequestParam String dob,@RequestParam String bio,@RequestParam String gender,@RequestParam String city,@RequestParam String college,@RequestParam String linkedIn,@RequestParam String gitHub,@RequestParam MultipartFile profilePic,HttpSession session,Model model) {
+	public String updateProfile(@RequestParam String dob,@RequestParam String bio,@RequestParam String gender,
+			@RequestParam String city,@RequestParam String college,@RequestParam String linkedIn,@RequestParam String gitHub,
+			@RequestParam MultipartFile profilePic,HttpSession session,Model model) {
 		
 		String username =(String) session.getAttribute("username");
 		
@@ -77,9 +84,36 @@ public class UserController {
 		{
 			e.printStackTrace(); 
 		}
+		
+		
 		service.updateUser(user);
-		model.addAttribute("user", user);
+		model.addAttribute("userdata", user);
+		
 		
 		return "myProfile";
 	}
+	
+	@GetMapping("/openMyProfile")
+	public String openMyProfile(Model model,HttpSession session) {
+		String username = (String)session.getAttribute("username");
+		User user = service.getUser(username);
+		model.addAttribute("user", user);
+		
+		List<Post>myPosts = user.getPosts();
+		model.addAttribute("myPosts", myPosts);
+		
+		return "myProfile";
+	}
+	
+	@PostMapping("/visitProfile")
+	public String visitProfile(@RequestParam String profileName,Model model) {
+		User user = service.getUser(profileName);
+		model.addAttribute("user", user);
+		List<Post>myPosts=user.getPosts();
+		model.addAttribute("myPosts", myPosts);
+		
+		return "showUserProfile";
+	}
+	
+
 }

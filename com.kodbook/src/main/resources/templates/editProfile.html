@@ -6,6 +6,13 @@
 <link href="editProfile.css" rel="stylesheet">
 </head>
 <body>
+     <nav>
+	    <span th:text="${session.username}"></span>
+		<a href="/openMyProfile">My profile</a>
+		<a href="/showPosts">Go Home</a>
+		<a href="/openCreatePost">Create Post</a>
+	</nav>
+	
 	<div class="container">
 		<h1>kodBook</h1>
 		<h3>Update Your Profile!</h3>
@@ -13,7 +20,7 @@
 		<form action="/updateProfile" method="post"
 			enctype="multipart/form-data">
 
-			<label>DOB:</label> <input type="text" name="dob"> <label>GENDER:</label>
+			<label>DOB:</label> <input type="date" name="dob"> <label>GENDER:</label>
 			M<input type="radio" name="gender" value="M"> F<input
 				type="radio" name="gender" value="F"> O<input type="radio"
 				name="gender" value="O"> <label>CITY:</label> <input
@@ -24,8 +31,6 @@
 				type="text" name="gitHub"> <input type="file"
 				name="profilePic" accept="image/*"> <br> <input
 				type="submit" value="Update Profile">
-		
-
 		</form>
 	</div>
 

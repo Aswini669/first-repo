@@ -31,7 +31,7 @@ public class Post {
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	@Column(columnDefinition = "LONGBLOB")
-	byte[] photo;
+	private byte[] photo;
 
 	public Post() {
 		super();
@@ -95,6 +95,14 @@ public class Post {
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
+	
+	public String getPhotoBase64() {
+		if(photo == null) {
+			return null;
+		}
+		return Base64.getEncoder().encodeToString(photo);
+	}
+
 
 	@Override
 	public String toString() {
